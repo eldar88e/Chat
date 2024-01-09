@@ -1,0 +1,10 @@
+<div class="message-wrap <%= message.sender == current_user ? 'sent' : 'received' %>">
+  <div class="message">
+    <div class="sender">
+      <%= message.sender.name %>
+    </div>
+    <div class="message-text">
+      <%= message.content %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<div class="room">
+  <%= link_to room.name, room_messages_path(room),
+              remote: true, format: :turbo_stream, data: { turbo_frame: :messenger } %>
+</div>

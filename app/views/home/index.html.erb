@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+    <h2>Users</h2>
+    <%= render @users %>
+
+    <h2>Rooms</h2>
+    <div class="new-room">
+      <%= render '/rooms/form' %>
+    </div>
+    <div class="list-rooms">
+        <%= turbo_stream_from :room %>
+        <%= turbo_frame_tag :rooms do %>
+            <%= render @rooms %>
+        <% end %>
+    </div>
+
+    <%= turbo_frame_tag :messenger %>
+<% end %>

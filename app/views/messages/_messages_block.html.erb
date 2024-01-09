@@ -1,0 +1,13 @@
+<%= turbo_frame_tag :messenger do %>
+  <div class="list-message-wrap">
+    <h4><%= room ? room.name : user.name %></h4>
+    <div class="list-message">
+      <%= turbo_stream_from :message %>
+      <%= turbo_frame_tag :messages do %>
+        <%= render messages %>
+      <% end %>
+    </div>
+
+    <%= render 'messages/message_form', user: user, room: room %>
+  </div>
+<% end %>

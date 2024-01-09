@@ -1,0 +1,12 @@
+<%= form_with(model: @room, url: rooms_path, method: :post, format: :turbo_stream,
+              data: { controller: "room" }) do |form| %>
+  <div style="display: flex">
+    <div class="input-room">
+      <%= form.text_field :name, placeholder: 'Room name...', class: 'form-label', data: { room_target: 'output' } %>
+    </div>
+
+    <div>
+      <%= form.submit 'Create Room', class: 'btn btn-primary', data: { 'action': 'click->room#clear' } %>
+    </div>
+  </div>
+<% end %>

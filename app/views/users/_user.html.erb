@@ -1,0 +1,4 @@
+<div class="user">
+  <%= link_to user.name, user_messages_path(user), remote: true,
+              format: :turbo_stream, data: { turbo_frame: :messenger } %>
+</div>

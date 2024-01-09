@@ -1,0 +1,20 @@
+<header>
+  <div class="container">
+    <div class="header">
+      <h3><a href="/">Chat</a></h3>
+      <% if user_signed_in? %>
+        <div> Hello <%= current_user.name %> </div>
+        <div style="display: flex">
+          <div style="margin-right: 5px;">
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
+          </div>
+          <div>
+            <%= link_to "Edit", edit_user_registration_path, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% else %>
+        <%= button_to "Sign in", new_user_session_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</header>
