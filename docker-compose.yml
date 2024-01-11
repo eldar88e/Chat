@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  chat:
+    image: chat
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: chat
+    environment:
+      RAILS_ENV: production
+      TZ: Europe/Moscow
+    ports:
+      - '80:3000'
+    volumes:
+      - gems:/app/vendor
+      - node_modules:/app/node_modules
+    networks:
+      - ps-net
+    restart: "unless-stopped"
+
+volumes:
+  gems:
+  node_modules:
+
+networks:
+  ps-net:
