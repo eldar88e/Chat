@@ -18,5 +18,6 @@ module Chat
     #
     config.time_zone = "Moscow"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.generators.test_framework = :rspec
   end
 end

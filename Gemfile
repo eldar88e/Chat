@@ -21,10 +21,12 @@ group :development, :test do
 end
 
 group :development do
-  gem "web-console"
+  gem 'web-console'
 end
 
 group :test do
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem 'capybara'
+  gem 'cucumber-rails'
+  gem 'selenium-webdriver'
+  gem 'rspec-rails'
 end
