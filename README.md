@@ -1,24 +1,20 @@
-# README
+# CHAT
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## README
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: 3.2.2
 
 * System dependencies
+    - rails 7.1.2
+    - pg 16
 
-* Configuration
+* Instruction for Production
+    - go to the folder of Chat
+    - run command: docker compose up --build
+    - for first run this project need open the new window terminal and go to the Chat folder and run the next command: docker compose exec chat rails db:setup
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Instruction for run Tests
+    - ...
+    - ...
