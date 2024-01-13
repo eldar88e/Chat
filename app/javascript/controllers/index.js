@@ -12,3 +12,6 @@ application.register("message", MessageController)
 
 import RoomController from "./room_controller"
 application.register("room", RoomController)
+
+import ScrollController from "./scroll_controller"
+application.register("scroll", ScrollController)

@@ -4,10 +4,10 @@ RUN apk --update add \
     build-base \
     tzdata \
     yarn \
-    git \
-    bash \
-    libxml2\
-    libxml2-dev\
+    libc6-compat \
+    postgresql-dev \
+    postgresql-client \
+    redis \
     && rm -rf /var/cache/apk/*
 
 WORKDIR /app
@@ -23,5 +23,4 @@ RUN yarn install --check-files
 
 COPY . /app/
 
-#ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD ["/bin/bash"]
+ENTRYPOINT ["./docker-entrypoint.sh"]

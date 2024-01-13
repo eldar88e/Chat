@@ -2,6 +2,21 @@ version: "3.9"
 
 services:
 
+  pg:
+    image: postgres:16.1
+    container_name: pg
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      TZ: Europe/Moscow
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - chat-net
+
   chat:
     image: chat
     build:
@@ -9,20 +24,40 @@ services:
       dockerfile: ./Dockerfile
     container_name: chat
     environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      REDIS_URL: redis://redis:6379/1
       RAILS_ENV: production
       TZ: Europe/Moscow
+    depends_on:
+      - pg
+      - redis
     ports:
-      - '80:3000'
+      - "80:3000"
     volumes:
-      - gems:/app/vendor
+      - gems:/usr/local/bundle/
       - node_modules:/app/node_modules
     networks:
-      - ps-net
+      - chat-net
     restart: "unless-stopped"
+
+  redis:
+    image: redis:latest
+    container_name: redis_server
+    command: redis-server
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - chat-net
+    volumes:
+      - redis:/data
 
 volumes:
   gems:
   node_modules:
+  db_data:
+  redis:
 
 networks:
-  ps-net:
+  chat-net:
