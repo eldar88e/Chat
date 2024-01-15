@@ -1,4 +1,4 @@
-names  = %w[John Jack Bob]
+names = %w[John Jack Bob]
 names.each { |name| User.create(email: "#{name.downcase}@gmail.com", password: 123456, name: name) }
 
 User.first.rooms.create(name: 'Room one')

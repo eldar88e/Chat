@@ -3,7 +3,7 @@
     <div class="header">
       <h3><a href="/">Chat</a></h3>
       <% if user_signed_in? %>
-        <div> Hello <%= current_user.name %> </div>
+        <div class="user">Hello <span style="font-weight: bold;"><%= current_user.name %></span>!</div>
         <div style="display: flex">
           <div style="margin-right: 5px;">
             <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
