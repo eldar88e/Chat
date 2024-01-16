@@ -6,10 +6,7 @@
   max-height: 100px;
   overflow-y: scroll;
   margin: 10px 0;
-
-  .room {
-    margin: 3px 0;
-  }
+  padding-right: 20px;
 }
 
 .new-room {
@@ -91,6 +88,17 @@
           height: 38px;
         }
       }
+    }
+  }
+}
+
+.list-group {
+
+  .user {
+
+    a {
+      display: block;
+      text-decoration: none;
     }
   }
 }

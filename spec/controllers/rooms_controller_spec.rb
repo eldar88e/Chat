@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe RoomsController, type: :controller do
   describe 'POST #create' do
     context 'when user is authenticated' do
-      let(:user) { create_user }
+      let(:user) { User.create(name: 'Test', email: 'test@example.com', password: '123456') }
 
       before { sign_in user }
 
@@ -14,7 +14,7 @@ RSpec.describe RoomsController, type: :controller do
         expect(Room.count).to eq(1)
         expect(Membership.count).to eq(1)
 
-        created_room = Room.first
+        created_room       = Room.first
         created_membership = Membership.first
 
         expect(created_room.name).to eq('Test Room')
@@ -38,9 +38,5 @@ RSpec.describe RoomsController, type: :controller do
         expect(response).to redirect_to(new_user_session_path)
       end
     end
-  end
-
-  def create_user
-    User.create(name: 'Test', email: 'test@example.com', password: 'password123')
   end
 end

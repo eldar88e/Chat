@@ -317,7 +317,7 @@ DEPENDENCIES
   pg
   puma (~> 6.0)
   rails (~> 7.1)
-  redis
+  redis (~> 4.0)
   rspec-rails
   selenium-webdriver
   sprockets-rails
