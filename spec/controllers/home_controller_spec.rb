@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe HomeController, type: :controller do
-  render_views
-
   describe 'GET #index' do
     context 'when user is authenticated' do
       let(:user) { User.create(name: 'Test', email: 'test@example.com', password: '123456') }

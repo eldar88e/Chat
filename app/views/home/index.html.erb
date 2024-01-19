@@ -13,7 +13,6 @@
   </div>
 
   <div class="list-rooms">
-    <%= turbo_stream_from :room %>
     <%= turbo_frame_tag :rooms, class: "list-group" do %>
       <%= render @rooms %>
     <% end %>

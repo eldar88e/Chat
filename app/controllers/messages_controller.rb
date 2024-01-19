@@ -3,13 +3,17 @@ class MessagesController < ApplicationController
 
   def index
     if params[:user_id]
-      @user     = User.find_by!(id: params[:user_id])
+      @user = User.find_by(id: params[:user_id])
+      return redirect_to root_path if @user.nil?
+
       @messages = Message.where(
         "((sender_id = ? AND recipient_id = ?) OR (sender_id = ? AND recipient_id = ?)) AND recipient_type = 'User'",
         current_user.id, @user.id, @user.id, current_user.id
       ).order(:created_at)
     elsif params[:room_id]
-      @room     = current_user.rooms.find_by!(id: params[:room_id])
+      @room = current_user.rooms.find_by(id: params[:room_id])
+      return redirect_to root_path if @room.nil?
+
       @messages = @room.messages
     end
 
@@ -21,7 +25,7 @@ class MessagesController < ApplicationController
 
   def create
     if params[:room_id]
-      @room    = current_user.rooms.find(params[:room_id])
+      @room    = current_user.rooms.find_by!(id: params[:room_id])
       @message = @room.messages.build(message_params)
     elsif params[:user_id]
       @user    = User.find(params[:user_id])
@@ -37,10 +41,6 @@ class MessagesController < ApplicationController
   end
 
   private
-
-  def set_room
-
-  end
 
   def message_params
     params.require(:message).permit(:content)
