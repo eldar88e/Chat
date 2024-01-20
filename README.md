@@ -18,5 +18,5 @@ Things you may want to cover:
       3. login: bob@gmail.com, pass: 12356.
 
 * Instruction for run Tests
-    - ...
-    - ...
+    - go to the folder of Chat
+    - docker compose -f docker-compose-test.yml up --build
