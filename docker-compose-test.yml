@@ -8,8 +8,6 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-    volumes:
-      - db_data:/var/lib/postgresql/data
     networks:
       - test-net
 
@@ -34,7 +32,6 @@ services:
 volumes:
   gems:
   node_modules:
-  db_data:
 
 networks:
   test-net:
