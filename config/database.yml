@@ -13,6 +13,7 @@ development:
 
 test:
   <<: *default
+  host: <%= ENV.fetch("PG_HOST") { 'localhost' } %>
   database: chat_test
 
 production:
