@@ -20,7 +20,6 @@ services:
     environment:
       RAILS_ENV: test
       PG_HOST: pg-test
-      SECRET_KEY_BASE: 948b55112005daf9de77df810ed1d73563f13a41303ee158d75dca9399cf128a572e91c588325fd81dd4e5746881007eb11bcca186cbd9800977244e78137b33
     depends_on:
       - pg-test
     volumes:
