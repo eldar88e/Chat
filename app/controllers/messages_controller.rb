@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
+  include MessagesHelper
 
   def index
     if params[:user_id]
@@ -18,7 +19,9 @@ class MessagesController < ApplicationController
     end
 
     respond_to do |format|
-      format.turbo_stream { turbo_stream.replace(:messenger, partial: 'messages/messages_block') }
+      format.turbo_stream do
+        turbo_stream.replace(:messenger, partial: 'messages/messages_block', locals: { channel: channel })
+      end
       format.html
     end
   end
@@ -35,7 +38,7 @@ class MessagesController < ApplicationController
     @message.sender = current_user
 
     if @message.save
-      @message.broadcast_append_to :message, locals: { current_user: current_user }
+      @message.broadcast_append_to(channel, locals: { current_user: current_user })
       head :ok
     end
   end

@@ -1,8 +1,8 @@
 <%= turbo_frame_tag :messenger do %>
   <div class="list-message-wrap">
-    <h4><%= room ? room.name : user.name %></h4>
+    <h4><%= (user || room).send(:name) %></h4>
     <div class="list-message" data-controller="scroll">
-      <%= turbo_stream_from :message %>
+      <%= turbo_stream_from channel, target: channel %>
       <%= turbo_frame_tag :messages, data: { action: "DOMNodeInserted->scroll#scrollToBottom" } do %>
         <%= render messages %>
       <% end %>
