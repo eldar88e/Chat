@@ -32,10 +32,18 @@ RSpec.describe RoomsController, type: :controller do
     end
 
     context 'when user is not authenticated' do
-      it 'redirects to sign_in path' do
-        post :create, params: { name: 'Test Room' }
+      context 'creates a new room for the user' do
+        it 'redirects to sign_in path' do
+          post :create, params: { name: 'Test Room' }
 
-        expect(response).to redirect_to(new_user_session_path)
+          expect(response).to redirect_to(new_user_session_path)
+        end
+
+        it 'returns a redirect status' do
+          post :create, params: { name: 'Test Room' }
+
+          expect(response).to have_http_status(302)
+        end
       end
     end
   end

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :memberships, dependent: :destroy
-  has_many :rooms, through: :memberships
-  #has_many :user_messages, foreign_key: :recipient_id, class_name: 'Message'
+  has_many :rooms, through: :memberships, dependent: :destroy
+  #has_many :sent_messages, class_name: 'Message', foreign_key: :sender_id
   has_many :messages, as: :recipient
 
   validates :name, presence: true
