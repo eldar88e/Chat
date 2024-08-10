@@ -1,3 +1,4 @@
-<%= link_to user.name, user_messages_path(user), remote: true,
-            format: :turbo_stream, data: { turbo_frame: :messenger },
+<%= link_to user.name, user_messages_path(user),
+            data: { turbo_frame: :messenger, value: "user_#{user.id}", active_item_target: 'item',
+                    action: "click->active-item#setActive", turbo_prefetch: false },
             class: "user list-group-item list-group-item-action" %>

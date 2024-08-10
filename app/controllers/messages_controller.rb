@@ -18,17 +18,12 @@ class MessagesController < ApplicationController
       @messages = @room.messages
     end
 
-    respond_to do |format|
-      format.turbo_stream do
-        turbo_stream.replace(:messenger, partial: 'messages/messages_block', locals: { channel: channel })
-      end
-      format.html
-    end
+    render turbo_stream: turbo_stream.replace(:messenger, partial: 'messages/messages_block')
   end
 
   def create
     if params[:room_id]
-      @room    = current_user.rooms.find_by!(id: params[:room_id])
+      @room    = current_user.rooms.find(params[:room_id])
       @message = @room.messages.build(message_params)
     elsif params[:user_id]
       @user    = User.find(params[:user_id])
@@ -40,6 +35,8 @@ class MessagesController < ApplicationController
     if @message.save
       @message.broadcast_append_to(channel, locals: { current_user: current_user })
       head :ok
+    else
+      render json: { error: 'Internal server error while saving data.' }, status: :internal_server_error
     end
   end
 

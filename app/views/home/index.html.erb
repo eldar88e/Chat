@@ -2,21 +2,25 @@
 
   <h2>Users</h2>
 
-  <div class="list-group">
-    <%= render @users %>
-  </div>
-  <br />
-  <h2>Rooms</h2>
+  <div data-controller="active-item">
+    <div class="list-group">
+      <%= render @users %>
+    </div>
+    <br />
+    <h2>Rooms</h2>
 
-  <div class="new-room">
-    <%= render '/rooms/form' %>
-  </div>
+    <div class="new-room">
+      <%= render '/rooms/form' %>
+    </div>
 
-  <div class="list-rooms">
-    <%= turbo_frame_tag :rooms, class: "list-group" do %>
-      <%= render @rooms %>
+    <div class="list-rooms">
+      <%= turbo_frame_tag :rooms, class: "list-group" do %>
+        <%= render @rooms %>
+      <% end %>
+    </div>
+
+    <%= turbo_frame_tag :messenger do %>
+      <span data-active-item-target="header" data-value="first"></span>
     <% end %>
   </div>
-
-  <%= turbo_frame_tag :messenger %>
 <% end %>

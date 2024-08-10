@@ -1,0 +1,10 @@
+<div class="send-message-wrap">
+  <%= form_with(model: Message.new, url: (@room ? room_messages_path(@room) : user_messages_path(@user)),
+                data: { controller: "message" }) do |form| %>
+    <div class="send-message">
+      <%= form.text_field :content, placeholder: 'Message...', autofocus: true, class: 'form-control input-message',
+                          data: { message_target: 'output' } %>
+      <%= form.submit 'Send', class: 'btn btn-light', data: { action: 'click->message#clear' } %>
+    </div>
+  <% end %>
+</div>

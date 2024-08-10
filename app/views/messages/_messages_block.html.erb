@@ -1,13 +1,13 @@
 <%= turbo_frame_tag :messenger do %>
   <div class="list-message-wrap">
-    <h4><%= (user || room).send(:name) %></h4>
+    <h4 data-active-item-target="header" data-value="<%= @user ? "user_#{@user.id}" : "room_#{@room.id}" %>"><%= (@user || @room).send(:name) %></h4>
+    <%= turbo_stream_from channel, target: channel %>
     <div class="list-message" data-controller="scroll">
-      <%= turbo_stream_from channel, target: channel %>
-      <%= turbo_frame_tag :messages, data: { action: "DOMNodeInserted->scroll#scrollToBottom" } do %>
-        <%= render messages %>
+      <%= turbo_frame_tag :messages do %>
+        <%= render @messages %>
       <% end %>
     </div>
 
-    <%= render 'messages/message_form', user: user, room: room %>
+    <%= render 'messages/form' %>
   </div>
 <% end %>

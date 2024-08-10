@@ -1,8 +1,7 @@
-<%= form_with(model: @room, url: rooms_path, method: :post, format: :turbo_stream,
-              data: { controller: "room" }) do |form| %>
+<%= form_with(model: @room, url: rooms_path, data: { controller: "room" }) do |form| %>
   <div style="display: flex">
     <div class="input-room">
-      <%= form.text_field :name, placeholder: 'Room name...', class: 'form-label', data: { room_target: 'output' } %>
+      <%= form.text_field :name, placeholder: 'Room name...', class: 'form-control', data: { room_target: 'output' } %>
     </div>
 
     <div>

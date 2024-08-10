@@ -1,3 +1,3 @@
-<%= link_to room.name, room_messages_path(room),
-            remote: true, format: :turbo_stream, data: { turbo_frame: :messenger },
-            class: "room list-group-item list-group-item-action" %>
+<%= link_to room.name, room_messages_path(room), class: "room list-group-item list-group-item-action",
+            data: { turbo_frame: :messenger, value: "room_#{room.id}", active_item_target: "item",
+                    action: "click->active-item#setActive", turbo_prefetch: false } %>

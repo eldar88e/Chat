@@ -12,3 +12,6 @@ application.register("room", RoomController)
 
 import ScrollController from "./scroll_controller"
 application.register("scroll", ScrollController)
+
+import ActiveItemController from "./active_item_controller"
+application.register("active-item", ActiveItemController)
