@@ -16,7 +16,7 @@ module Chat
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    config.time_zone = "Moscow"
+    config.time_zone = 'Europe/Moscow'
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators.test_framework = :rspec
   end
