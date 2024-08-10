@@ -13,9 +13,7 @@ services:
 
   chat-test:
     image: chat-test
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    build: .
     container_name: chat-test
     environment:
       RAILS_ENV: test
@@ -24,14 +22,13 @@ services:
       - pg-test
     volumes:
       - gems:/usr/local/bundle/
-      - node_modules:/app/node_modules
+      - ./node_modules:/app/node_modules
     networks:
       - test-net
-    entrypoint: ./docker-entrypoint-test.sh
+    entrypoint: [ "sh", "-c", "bundle exec rails db:prepare && bundle exec rspec --format documentation" ]
 
 volumes:
   gems:
-  node_modules:
 
 networks:
   test-net:
