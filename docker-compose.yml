@@ -1,7 +1,4 @@
-version: "3.9"
-
 services:
-
   pg:
     image: postgres:16.1
     restart: unless-stopped
@@ -32,6 +29,7 @@ services:
     volumes:
       - gems:/usr/local/bundle/
       - ./node_modules:/app/node_modules
+      - ./public:/app/public
     networks:
       - chat-net
     restart: always

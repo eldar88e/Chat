@@ -1,7 +1,4 @@
-version: "3.9"
-
 services:
-
   pg-test:
     image: postgres:16.1
     container_name: pg-test
