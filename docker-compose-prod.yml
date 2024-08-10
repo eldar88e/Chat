@@ -1,0 +1,53 @@
+services:
+  pg:
+    image: postgres:16.1
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      TZ: Europe/Moscow
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - chat-net
+
+  chat:
+    image: chat
+    build: .
+    container_name: chat
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      REDIS_URL: redis://redis:6379/1
+      RAILS_ENV: production
+      RAILS_MASTER_KEY: f87686052c62a14394b0ad4d4e2a4d12
+    depends_on:
+      - pg
+      - redis
+    volumes:
+      - gems:/usr/local/bundle/
+      - ./node_modules:/app/node_modules
+    networks:
+      - chat-net
+      - proxy-net
+    restart: always
+
+  redis:
+    image: redis:latest
+    container_name: redis_server
+    command: redis-server
+    restart: unless-stopped
+    networks:
+      - chat-net
+    volumes:
+      - redis:/data
+
+volumes:
+  gems:
+  db_data:
+  redis:
+
+networks:
+  chat-net:
+  proxy-net:
+    external: true
