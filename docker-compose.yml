@@ -23,7 +23,7 @@ services:
       POSTGRES_PASSWORD: admin
       REDIS_URL: redis://redis:6379/1
       RAILS_ENV: production
-      RAILS_MASTER_KEY: 708a9bc145ef92d6b3e5b3f9ee44d6fb
+      RAILS_MASTER_KEY: f87686052c62a14394b0ad4d4e2a4d12
     depends_on:
       - pg
       - redis
