@@ -7,12 +7,14 @@ class RoomsController < ApplicationController
     if @new_room.save
       @memberships = @new_room.memberships.build(user_id: current_user.id)
       if @memberships.save
-        render turbo_stream: turbo_stream.append(:rooms, partial: 'rooms/room', locals: { room: @new_room })
+        render turbo_stream: [turbo_stream.append(:rooms, partial: 'rooms/room', locals: { room: @new_room }),
+                              success_notice("#{@new_room.name} room created")
+        ]
       else
-        redirect_to root_path, alert: @memberships.errors.join(' ,')
+        error_notice(@memberships.errors.full_messages)
       end
     else
-      redirect_to root_path, alert: 'Error saving room!'
+      error_notice(@new_room.errors.full_messages)
     end
   end
 end

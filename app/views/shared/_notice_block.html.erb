@@ -1,0 +1,10 @@
+<%= turbo_frame_tag :notices, class: "notice-group" do %>
+  <% flash.each do |key, value| %>
+    <% [value].flatten.each do |i| %>
+      <div class="alert alert-<%= key %>" role="alert" data-controller="notices">
+        <%= i %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+<%= turbo_stream_from "recipient_#{current_user.id}", target: :notices %>

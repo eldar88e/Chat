@@ -4,7 +4,7 @@
       <%= (@user || @room).send(:name) %><%= " (#{@room.users.size})" if @room %>
     </h4>
     <%= turbo_stream_from channel, target: channel %>
-    <div class="list-message" data-controller="scroll">
+    <div class="list-message" data-controller="scroll" data-scroll-current-value="<%= "user_#{current_user.id}" %>">
       <%= turbo_frame_tag :messages do %>
         <%= render @messages %>
       <% end %>

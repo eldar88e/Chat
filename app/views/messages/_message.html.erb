@@ -1,4 +1,4 @@
-<div class="message-wrap <%= message.sender == current_user ? 'sent' : 'received' %>">
+<div class="message-wrap <%= message.sender == current_user ? 'sent' : 'received' %>" data-value="<%= "user_#{current_user.id}" %>">
   <div class="message">
     <div class="sender">
       <%= message.sender.name %>

@@ -15,3 +15,6 @@ application.register("scroll", ScrollController)
 
 import ActiveItemController from "./active_item_controller"
 application.register("active-item", ActiveItemController)
+
+import NoticesController from "./notices_controller"
+application.register("notices", NoticesController)
