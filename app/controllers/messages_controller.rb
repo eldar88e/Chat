@@ -55,8 +55,9 @@ class MessagesController < ApplicationController
   end
 
   def send_notice
+    recipient_id = @message.recipient_id
     if @message.recipient_type == 'Room'
-      memberships = Room.find(@message.recipient_id).memberships
+      memberships = Room.find(recipient_id).memberships
       memberships.each { |membership| send_to_broadcast(membership.user_id) if current_user.id != membership.user_id }
     else
       send_to_broadcast(recipient_id) if recipient_id != current_user.id
