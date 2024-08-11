@@ -1,11 +1,11 @@
-<%= form_with(model: @room, url: rooms_path, data: { controller: "room" }) do |form| %>
+<%= form_with(model: @room, url: rooms_path) do |form| %>
   <div style="display: flex">
     <div class="input-room">
       <%= form.text_field :name, placeholder: 'Room name...', class: 'form-control', data: { room_target: 'output' } %>
     </div>
 
     <div>
-      <%= form.submit 'Create Room', class: 'btn btn-primary', data: { 'action': 'click->room#clear' } %>
+      <%= form.submit 'Create Room', class: 'btn btn-primary', data: { 'action': 'click->room#handler' } %>
     </div>
   </div>
 <% end %>

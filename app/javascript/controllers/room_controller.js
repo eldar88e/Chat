@@ -1,15 +1,27 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["output"];
+    static targets = ["output", "list"];
 
-    clear() {
+    connect() {
+        window.scroles = this.element;
+    }
+
+    handler() {
         document.addEventListener("turbo:submit-end", (event) => {
             if (event.detail.success) {
-                this.outputTarget.value = '';
-                let listRooms = document.querySelector('div.list-rooms');
-                listRooms.scrollTop = listRooms.scrollHeight;
+                this.clear();
+                this.down();
             }
         });
     }
+
+    clear() {
+        this.outputTarget.value = '';
+    }
+
+    down() {
+        this.listTarget.scrollTop = this.listTarget.scrollHeight;
+    }
+
 }

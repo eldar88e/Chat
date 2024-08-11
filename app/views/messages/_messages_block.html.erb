@@ -1,6 +1,8 @@
 <%= turbo_frame_tag :messenger do %>
   <div class="list-message-wrap">
-    <h4 data-active-item-target="header" data-value="<%= @user ? "user_#{@user.id}" : "room_#{@room.id}" %>"><%= (@user || @room).send(:name) %></h4>
+    <h4 data-active-item-target="header" data-value="<%= @user ? "user_#{@user.id}" : "room_#{@room.id}" %>">
+      <%= (@user || @room).send(:name) %><%= " (#{@room.users.size})" if @room %>
+    </h4>
     <%= turbo_stream_from channel, target: channel %>
     <div class="list-message" data-controller="scroll">
       <%= turbo_frame_tag :messages do %>

@@ -7,16 +7,18 @@
       <%= render @users %>
     </div>
     <br />
-    <h2>Rooms</h2>
 
-    <div class="new-room">
-      <%= render '/rooms/form' %>
-    </div>
+    <div data-controller="room">
+      <h2>Rooms</h2>
+      <div class="new-room">
+        <%= render '/rooms/form' %>
+      </div>
 
-    <div class="list-rooms">
-      <%= turbo_frame_tag :rooms, class: "list-group" do %>
-        <%= render @rooms %>
-      <% end %>
+      <div class="list-rooms" data-room-target="list">
+        <%= turbo_frame_tag :rooms, class: "list-group" do %>
+          <%= render @rooms %>
+        <% end %>
+      </div>
     </div>
 
     <%= turbo_frame_tag :messenger do %>
